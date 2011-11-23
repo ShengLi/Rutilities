@@ -10,7 +10,8 @@ License: Artistic License, Version 2.0
 LazyLoad: yes
 Depends:
     R (>= 2.13.1)
-Imports:    
+Imports:
 Collate:
+    'hCluster.R'
     'sbio.R'
-Packaged: 2011-11-22 1:39:30 UTC; sheng
+Packaged: NA
