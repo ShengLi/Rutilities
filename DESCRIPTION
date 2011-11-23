@@ -1,0 +1,16 @@
+Package: Rutilities
+Type: Package
+Title: R utilities
+Version: 0.1
+Date: 2011-11-22
+Author: Sheng Li
+Maintainer: Sheng Li <shelly1436@gmail.com>
+Description: R utilities
+License: Artistic License, Version 2.0
+LazyLoad: yes
+Depends:
+    R (>= 2.13.1)
+Imports:    
+Collate:
+    'sbio.R'
+Packaged: 2011-11-22 1:39:30 UTC; sheng
