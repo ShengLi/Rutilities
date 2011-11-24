@@ -1,11 +1,11 @@
 \docType{methods}
 \name{hCluster}
+\alias{"hCluster,ANY-method"}
 \alias{hCluster}
-\alias{hCluster,ANY-method}
 \title{Hierarchical Cluster Analysis}
 \usage{
-  hCluster(x, dist.method = "correlation",
-    hclust.method = "ward", plot = TRUE)
+  hCluster(x, dist.method = "correlation", hclust.method =
+  "ward", plot = TRUE)
 }
 \arguments{
   \item{x}{a \code{matrix} object, each column is a sample,
@@ -25,6 +25,11 @@
 
   \item{plot}{a logical value indicating whether to plot
   hierarchical clustering. (default:TRUE)}
+}
+\value{
+  a \code{tree} object of a hierarchical cluster analysis
+  using a set of dissimilarities for the n objects being
+  clustered.
 }
 \description{
   Hierarchical Cluster Analysis

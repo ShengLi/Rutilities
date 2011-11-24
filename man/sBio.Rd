@@ -1,9 +1,6 @@
 \name{sBio}
 \alias{sBio}
 \title{source biocLite.R}
-\usage{
-  sBio()
-}
 \description{
   Source biocLite.R from bioconductor.R
 }

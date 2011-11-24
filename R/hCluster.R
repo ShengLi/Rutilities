@@ -40,7 +40,7 @@ distCor=function(x, method="pearson", abs=TRUE, diag=FALSE, upper=FALSE)
   return(d)
 } 
 
-# end of regular functions to be used in S3 functions
+# end of regular functions to be used in S3 functions 
 #---------------------------------------------------------------------------------------
 
 #' Hierarchical Cluster Analysis
@@ -54,6 +54,7 @@ distCor=function(x, method="pearson", abs=TRUE, diag=FALSE, upper=FALSE)
 #' @docType methods
 #' @rdname hCluster-methods
 #' @aliases hCluster,ANY-method
+#' @return a \code{tree} object of a hierarchical cluster analysis using a set of dissimilarities for the n objects being clustered.
 hCluster=function(x, dist.method="correlation", hclust.method="ward", plot=TRUE){
   DIST.METHODS <- c("correlation", "euclidean", "maximum", "manhattan", "canberra", 
         "binary", "minkowski")
@@ -75,11 +76,42 @@ hCluster=function(x, dist.method="correlation", hclust.method="ward", plot=TRUE)
   hc=hclust(d, HCLUST.METHODS[hclust.method]);
   
   if(plot){
-    plclust(hc,hang=-1, main=paste("CpG dinucleotide methylation clustering\nDistance: ",
+    plclust(hc,hang=-1, main=paste("Hierachical clustering\nDistance: ",
                                    DIST.METHODS[dist.method],sep=""), xlab = "Samples");
   }
   return(hc)
   }
 
-#' @return a \code{tree} object of a hierarchical cluster analysis using a set of dissimilarities for the n objects being clustered.
+
+
+#' Principal Components Analysis for scatter plot and screeplot
+#' 
+#' @param x a \code{matrix} object, each column is a sample, each row is a feature
+#' @param cor a logical value indicating whether the calculation should use the correlation matrix or the covariance matrix. (default: TRUE)
+#' @param screeplot a logical value indicating whether to plot the variances against the number of the principal component. (default: FALSE)
+#'
+#' @export
+#' @docType methods
+#' @rdname pcaPlot-methods
+#' @aliases pcaPlot,ANY-methods
+#' @return The form of the value returned by \code{pcaPlot} is the summary of principal component analysis by \code{princomp}.
+#'
+#' @examples
+#' x = rnorm(100, 100, 5)
+#' y = cbind(x, 2*x+rnorm(100), 1:100, 1:100 + rnorm(100,0.5,2))
+#' colnames(y) = c('test1','test2','ctrl1','ctrl2')
+#' pcaPlot(y,screeplot=TRUE)
+#' pcaPlot(y)
+
+pcaPlot = function(x, cor=TRUE, screeplot=FALSE){
+  x.pr = princomp(x, cor=cor)
+  if (screeplot)
+    screeplot(x.pr, type="lines", main="PCA Screeplot")
+  else{
+    loads = loadings(x.pr)
+    plot(loads[,1:2], main = "PCA Analysis")
+    text(loads[,1], loads[,2],adj=c(-0.4,0.3))
+  }
+  return(summary(x.pr))
+}
 
